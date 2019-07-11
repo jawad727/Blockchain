@@ -139,7 +139,7 @@ node_identifier = str(uuid4()).replace('-', '')
 # Instantiate the Blockchain
 blockchain = Blockchain()
 
-@app.route('/mine', methods=['GET'])
+@app.route('/mine', methods=['POST'])
 def mine():
     # We run the proof of work algorithm to get the next proof...
     last_block = blockchain.last_block
@@ -190,13 +190,7 @@ def new_transaction():
     response = {'message': f'Transaction will be added to Block {index}'}
     return jsonify(response), 201
 
-@app.route('/last_proof', methods=['GET'])
-def last_proof():
-    #We want to get the last proof. Last block of the array
-    response = {
-        'proof': blockchain.last_block['proof']
-    }
-    return jsonify(response), 200
+
 
 
 @app.route('/chain', methods=['GET'])

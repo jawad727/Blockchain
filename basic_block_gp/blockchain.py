@@ -5,7 +5,6 @@ from uuid import uuid4
 
 from flask import Flask, jsonify, request
 
-
 class Blockchain(object):
     def __init__(self):
         self.chain = []
@@ -101,7 +100,7 @@ class Blockchain(object):
         guess = f'{last_proof}{proof}'.encode()
         guess_hash = hashlib.sha256(guess).hexdigest()
         # Returns first four elements of the array
-        return guess_hash[:4] == "0000"
+        return guess_hash[:6] == "000000"
 
     def valid_chain(self, chain):
         """
